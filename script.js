@@ -66,7 +66,7 @@ del.innerText = "X"
 del.className = ("deletar")
  return local.appendChild(del)
 }
-function remover(x){
+//function remover(x){
   document.addEventListener("click", function(e){
     el = e.target
     if(el.classList.contains("deletar")){
@@ -81,5 +81,5 @@ function remover(x){
    
   })
   
-}
+//}
 
