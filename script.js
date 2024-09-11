@@ -9,7 +9,7 @@ const finalValue = document.querySelector(".valor-total")
 let total = 0
 let real = null
 let click = 0
-i = 0
+let i = 0
 cart.addEventListener("click",function (){
 sideBar.classList.toggle("left")
 })
@@ -17,26 +17,33 @@ close.addEventListener("click", function(){
   sideBar.classList.remove("left")
 })
 products.forEach(div =>{
-  
-    div.addEventListener('click', () => {  
-      let zeraConta = sideBar.querySelectorAll(".products-cart")
-      zeraConta.forEach(div => {
-        let conta = 0
-        document.addEventListener("click", function(e){
-          let el = e.target
-          if(el.classList.contains("box")){
-            conta++
-          }
-        })
-      })
+  let conta = 0
 
+    div.addEventListener('click', (e) => {  
+      conta++
+      i++
+      console.log(i)
       
         cont.innerText = i
         cont.style.opacity = "100"
         const h3Text = div.querySelector("h3").innerText   
         let preco = div.querySelector(".price").innerText  
         const img = div.querySelector("img").src
-
+        let Newdiv = sideBar.querySelectorAll(".products-cart")            
+        Newdiv.forEach(div =>{
+          div.addEventListener("click", function(e){
+            const el = e.target
+            if(el.classList.contains("deletar")){
+              conta = 0
+             
+            }
+          })
+          const h3 = div.querySelector("h3").innerText                  
+            if(h3 == h3Text){
+              let fvalue = parseFloat(preco.slice(2, -9).replace(",", ".")) * conta
+              div.innerHTML = `<img src="${img}"><h3>${h3Text}</h3><h4>${conta}</h4><p>${fvalue.toFixed(2)}<p/><div class="deletar">x</div>`   
+            }               
+        }) 
 
         function verificar(){
             for(let t = 0; t < savedProducts.length; t++){
@@ -51,14 +58,7 @@ products.forEach(div =>{
                 console.log("item já existe")          
                 total += parseFloat(preco.slice(2, -9).replace(",", "."))
                 finalValue.innerHTML = `Total:${total.toFixed(2)}` 
-                let Newdiv = sideBar.querySelectorAll(".products-cart")            
-              Newdiv.forEach(div =>{
-                const h3 = div.querySelector("h3").innerText                  
-                  if(h3 == h3Text){
-                    let fvalue = parseFloat(preco.slice(2, -9).replace(",", ".")) * conta
-                    div.innerHTML = `<img src="${img}"><h3>${h3Text}</h3><h4>${conta}</h4><p>${fvalue.toFixed(2)}<p/><div class="deletar">x</div>`   
-                  }               
-              })              
+             
             }else{      
                 savedProducts.unshift({
                     name: h3Text,
@@ -74,7 +74,7 @@ products.forEach(div =>{
                          
                   total += parseFloat(preco.slice(2, -9).replace(",", ".")) * conta
                   finalValue.innerHTML = `Total:${total.toFixed(2)}` 
-                i++
+                
                   console.log(total)
                   cont.innerText = i
                              
@@ -87,12 +87,16 @@ del.innerText = "X"
 del.className = ("deletar")
  return local.appendChild(del)
 }
-function remover(x){
+
+
+
+
   document.addEventListener("click", function(e){
     el = e.target
     if(el.classList.contains("deletar")){
       el.parentElement.remove()
-      i--
+      let h4 = el.parentElement.querySelector("h4").innerHTML
+      i = i - parseFloat(h4)
       let limpar = el.parentElement.querySelector("h3").innerHTML
       for(let b  in savedProducts){
         if(savedProducts[b].name.includes(limpar)){
@@ -102,8 +106,6 @@ function remover(x){
       }
 
        let p = el.parentElement.querySelector("p").innerText.replace(",", ".")  
-       
-      
        total -= parseFloat(p)
         finalValue.innerHTML = `Total:${total.toFixed(2)}`
         cont.innerText = i
@@ -115,6 +117,6 @@ function remover(x){
      
     }
   })
-  
-}
+
+
 
