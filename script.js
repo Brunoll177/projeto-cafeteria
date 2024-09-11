@@ -80,7 +80,7 @@ products.forEach(div =>{
                   sideBar.appendChild(newDiv)   
                   
                          
-                  total += parseFloat(preco.slice(2, -9).replace(",", ".")) * savedProducts[contadorVerifica()].contador()
+                  total += parseFloat(preco.slice(2, -9).replace(",", "."))
                   finalValue.innerHTML = `Total:${total.toFixed(2)}` 
                 
                   console.log(total)
