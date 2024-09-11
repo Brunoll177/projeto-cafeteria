@@ -1,16 +1,13 @@
 html {
     scroll-behavior: smooth;
   }
-
 :root{
     --main-color:#d3ad7f;
     --black:#13131a;
     --bg:#010103;
     --border:0.1rem solid rgba(255, 255, 255, 0.3);
     font-size: 10px;
-
 }
-
 *{
     margin: 0px;
     padding: 0px;
@@ -269,10 +266,11 @@ z-index: 101;
     z-index: 100;
     position: fixed;
     top: 0px;
-    left: 1870px;
+    left: 100vw;
     padding: 20px;
     border-radius: 10px;
     overflow:auto; 
+   
    
     
    
@@ -285,13 +283,14 @@ z-index: 101;
     font-size: 20px;
     align-items: center;
     color: #fff;
-    gap: 10px ;
+    gap: 7px ;
     margin-bottom: 20px;
     background-color: var(--main-color);
-    padding: 10px;
+    padding: 10px 30px 10px 10px;
     border-radius: 10px;
-    width: 95%;
+    width: 360px;
     justify-content: space-around;
+    
  
     
 }
@@ -332,7 +331,6 @@ padding: 15px;
     position: absolute;
     top: 90%;
     border-radius: 10px;
-    
     font-size: 1.7rem;
     font-weight: bolder;
     background-color: var(--main-color);
